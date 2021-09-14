@@ -1,0 +1,10 @@
+ompiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+*.idea
+*.xml
+*.vscode
+build/
+.vscode/
