@@ -6,8 +6,20 @@
 class CSample
 {
 public:
-    CSample();
+    CSample(const std::string &name);
     ~CSample();
+    
+    CSample(const CSample& obj);
+    CSample(CSample&& obj);
+
+    void add(const int &num);
+
+    std::string m_name;
+
+private:
+    std::vector<int> m_filter;
+    int divsior;
+
 };
 
 

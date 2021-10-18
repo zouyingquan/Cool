@@ -22,8 +22,6 @@ int main(int argc, char* argv[])
 
     LOG(INFO) << "cool start ..";
 
-    std::shared_ptr<CSample> ptr = std::make_shared<CSample>();
-    
 
     #if USE_GLOG
     google::ShutdownGoogleLogging();
