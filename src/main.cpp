@@ -1,5 +1,6 @@
 
 #include "common.h"
+#include "leetCode.h"
 #include "Sample.h"
 
 #define USE_GLOG 0
@@ -21,6 +22,7 @@ int main(int argc, char* argv[])
     #endif
 
     LOG(INFO) << "cool start ..";
+    LOG(INFO) << reverse(1090000);
 
 
     #if USE_GLOG

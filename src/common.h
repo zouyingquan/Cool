@@ -8,8 +8,12 @@
 #include <memory>
 #include <fstream>
 #include <algorithm>
+#include <limits.h>
 
 #include <glog/logging.h>
+
+using std::vector;
+using std::string;
 
 struct ListNode 
 {

@@ -1,7 +1,4 @@
-#include "common.h"
-
-using std::vector;
-using std::string;
+#include "leetCode.h"
 
 //1、两数之和
 vector<int> twoSum(vector<int> &nums, int target)
@@ -76,4 +73,165 @@ int lengthOfLongestSubstring(string s)
         i++;
     }
     return maxlen;
+}
+
+//4、寻找两个正序数组的中位数
+double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) 
+{
+    int lenghtOfNums1 = nums1.size();
+    int lenghtOfNums2 = nums2.size();
+    int totalLength =  lenghtOfNums1 + lenghtOfNums2;
+    int loopSize = (lenghtOfNums1 > lenghtOfNums2) ? lenghtOfNums1 : lenghtOfNums2;
+    int mid = -1,left = -1,right = -1;
+    
+    mid = totalLength / 2;
+
+    int index = -1;
+    int i = 0, j = 0;
+    while(i < lenghtOfNums1 && j < lenghtOfNums2)
+    {
+        if(nums1[i] < nums2[j])
+        {
+            left = right;
+            right = nums1[i];
+            ++i;
+        }
+        else
+        {
+            left = right;
+            right = nums2[j];
+            ++j;
+        }
+        if(++index == mid)
+            break;
+    }
+
+    if(index != mid)
+    {
+        while(i < lenghtOfNums1)
+        {
+            left = right;
+            right = nums1[i];
+            ++i;
+            if(++index == mid)
+            break;
+        }
+
+        while(j < lenghtOfNums2)
+        {
+            left = right;
+            right = nums2[j];
+            ++j;
+            if(++index == mid)
+            break;
+        }
+    }
+    if(totalLength % 2 == 0 && totalLength > 1)
+        return (double)(right + left) / 2;
+    else
+        return right;
+}
+
+//5、最长回文子串
+string longestPalindrome(string s) 
+{
+
+}
+
+int maxArea(vector<int>& height) 
+{
+    #if 0
+    int maxSize = -1;
+    int len = height.size();
+    for(int i = 0; i < len - 1; ++i)
+    {
+        for(int j = len - 1 ; j > i; --j)
+        {
+            int tmpSize = (j - i) * (height[i] > height[j] ? height[j] : height[i]);
+            if(tmpSize > maxSize) 
+                maxSize = tmpSize;
+        }
+    }
+    return maxSize;
+    #endif
+    int maxSize = -1;
+    int i = 0, j = height.size() - 1;
+    while(i < j)
+    {
+        int tmpSize = (j - i) * (height[i] > height[j] ? height[j] : height[i]);
+        if(tmpSize > maxSize) 
+            maxSize = tmpSize;
+        if(height[i] > height[j])
+        {
+            --j;
+        }
+        else
+            ++i;
+    }
+    return maxSize;
+}
+
+//6.Z字变形
+string convert(string s, int numRows)
+{
+    string ans;
+    int length = s.length();
+    int interval = numRows;
+    int j = 0;
+    int lineBase = (numRows - 1) * 2;
+    int odd = 0 ,even = 0;
+    int count = 0;
+
+    if(numRows == 1)
+        return s;
+
+    for(int i = 0 ; i < numRows; ++i)
+    {
+        even = i * 2;
+        if(even == 0) even = lineBase;
+        
+        odd = (numRows - 1 - i) * 2;
+        if(odd == 0) odd = lineBase;
+        j = i;
+        count = 1;
+        while(j < length)
+        {
+            ans.push_back(s[j]);
+            if(count % 2)
+            {
+                j = j + odd;
+            }
+            else
+            {
+                j = j + even;
+            }
+            ++count;
+        }
+    }
+    return ans;
+}
+
+//7、整数翻转
+int reverse(int x) 
+{
+    if(x == 0)
+        return x;
+    
+    long ans = 0;
+    int type = (x > 0) ? 1 : -1;
+    int num;
+    bool flag = false;
+    while(x != 0)
+    {
+        num = x % 10;
+        if(num == 0 && flag == false)
+        {
+            x  = x / 10;
+            continue;
+        }
+        flag = true;
+        ans = ans * 10 + num;
+        x  = x / 10;
+    }
+    return ans > INT_MAX || ans < INT_MIN ? 0 : ans;
 }
