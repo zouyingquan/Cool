@@ -8,9 +8,14 @@ CSample::CSample(const std::string &name)
     m_name = name;
 }
 
+CSample::CSample()
+{
+    LOG(INFO) << "call CSample init";
+}
+
 CSample::~CSample()
 {
-    LOG(INFO) << "call ~CSample";
+    LOG(INFO) << "call ~CSample " << m_name;
 }
 
 CSample::CSample(const CSample& obj)

@@ -1,7 +1,7 @@
 #include "leetCode.h"
 
 //1、两数之和
-vector<int> twoSum(vector<int> &nums, int target)
+vector<int> Solution::twoSum(vector<int> &nums, int target)
 {
     std::map<int, int> mSum;
     for (int i = 0; i < nums.size(); i++)
@@ -18,7 +18,7 @@ vector<int> twoSum(vector<int> &nums, int target)
 }
 
 //2、两数相加
-ListNode *addTwoNumbers(ListNode *l1, ListNode *l2)
+ListNode* Solution::addTwoNumbers(ListNode *l1, ListNode *l2)
 {
     ListNode *ans = nullptr;
     ListNode *ansIndex = nullptr;
@@ -56,7 +56,7 @@ ListNode *addTwoNumbers(ListNode *l1, ListNode *l2)
     return ans;
 }
 
-int lengthOfLongestSubstring(string s) 
+int Solution::lengthOfLongestSubstring(string s) 
 {
     int start = -1,maxlen = 0;
     vector<int> dir(256,-1);
@@ -76,7 +76,7 @@ int lengthOfLongestSubstring(string s)
 }
 
 //4、寻找两个正序数组的中位数
-double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) 
+double Solution::findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) 
 {
     int lenghtOfNums1 = nums1.size();
     int lenghtOfNums2 = nums2.size();
@@ -133,12 +133,12 @@ double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2)
 }
 
 //5、最长回文子串
-string longestPalindrome(string s) 
+string Solution::longestPalindrome(string s) 
 {
 
 }
 
-int maxArea(vector<int>& height) 
+int Solution::maxArea(vector<int>& height) 
 {
     #if 0
     int maxSize = -1;
@@ -172,7 +172,7 @@ int maxArea(vector<int>& height)
 }
 
 //6.Z字变形
-string convert(string s, int numRows)
+string Solution::convert(string s, int numRows)
 {
     string ans;
     int length = s.length();
@@ -212,7 +212,7 @@ string convert(string s, int numRows)
 }
 
 //7、整数翻转
-int reverse(int x) 
+int Solution::reverse(int x) 
 {
     if(x == 0)
         return x;
@@ -234,4 +234,39 @@ int reverse(int x)
         x  = x / 10;
     }
     return ans > INT_MAX || ans < INT_MIN ? 0 : ans;
+}
+
+//14. 最长公共前缀
+string Solution::longestCommonPrefix(vector<string>& strs) 
+{
+    /*
+        输入：strs = ["flower","flow","flight"]
+        输出："fl"
+    */
+    string res;
+    int length = strs[0].size();
+    int compare_len = length;
+    int compared_len = -1;
+    for(unsigned int i = 1 ; i < strs.size(); ++i)
+    {
+        int index = 0;
+        compared_len = strs[i].size();
+        if(compared_len == 0 || compare_len == 0) return "";
+        while(strs[0].at(index) == strs[i].at(index))
+        {
+            ++index;
+            if(index == compare_len || index == compared_len)
+            {
+                break;
+            }
+        }
+
+        if(index < length)
+            length = index;
+    }
+
+    res = strs[0].substr(0,length);
+
+    return res;
+
 }

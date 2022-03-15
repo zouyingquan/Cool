@@ -6,6 +6,7 @@
 class CSample
 {
 public:
+    CSample();
     CSample(const std::string &name);
     ~CSample();
     
@@ -13,6 +14,7 @@ public:
     CSample(CSample&& obj);
 
     void add(const int &num);
+    void setName(const string &name){m_name = name;}
 
     std::string m_name;
 

@@ -3,7 +3,17 @@
 #include "leetCode.h"
 #include "Sample.h"
 
+#include <list>
+
 #define USE_GLOG 0
+
+std::shared_ptr<CSample> test()
+{
+    std::shared_ptr<CSample> ptr = std::make_shared<CSample>();
+    ptr->setName("1");
+    
+    return ptr;
+}
 
 
 int main(int argc, char* argv[])
@@ -20,11 +30,11 @@ int main(int argc, char* argv[])
     google::InstallFailureSignalHandler();
     google::InstallFailureWriter(&signal_handle);  
     #endif
-
+    Solution leetcode;
     LOG(INFO) << "cool start ..";
-    LOG(INFO) << reverse(1090000);
+    LOG(INFO) << leetcode.reverse(1090000);
 
-
+     
     #if USE_GLOG
     google::ShutdownGoogleLogging();
     #endif
