@@ -270,3 +270,46 @@ string Solution::longestCommonPrefix(vector<string>& strs)
     return res;
 
 }
+
+int Solution::myAtoi(string s)
+{
+    int ans = 0;
+    int len = s.size();
+    unsigned int i = 0;
+    int sign = 1;
+
+    while( i < len && s.at(i) == ' ')
+    {
+        ++i;
+    }
+
+    int start = i;
+    for(;i < len ; ++i)
+    {
+        if( i == start && s.at(i) == '+')
+            sign = 1;
+        else if( i == start && s.at(i) == '-')
+            sign = -1;
+        else if(s[i] >= '0' && s[i] <= '9')
+        {
+            int num = s[i] - '0';
+            if(ans > INT_MAX/10 || (ans == INT_MAX / 10 && num > INT_MAX % 10))
+            {
+                return INT_MAX;
+            }
+
+            if(ans < INT_MIN / 10 || (ans == INT_MIN / 10 && -num < INT_MIN % 10))
+            {
+                return INT_MIN;
+            }
+
+            ans = ans*10+sign*num;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    return ans;
+}
