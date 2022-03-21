@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <queue>
 #include <memory>
 #include <fstream>
 #include <algorithm>
@@ -14,15 +15,6 @@
 
 using std::vector;
 using std::string;
-
-struct ListNode 
-{
-    int val;
-    ListNode *next;
-    ListNode() : val(0), next(nullptr) {}
-    ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode *next) : val(x), next(next) {}
-};
 
 void signal_handle(const char* data, int size);
 

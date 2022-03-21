@@ -2,6 +2,14 @@
 #define _LEETCODE_H_
 
 #include "common.h"
+
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 class Solution 
 {
 public:
@@ -17,5 +25,6 @@ public:
     int myAtoi(string s);                                                   //8. 字符串转换整数 (atoi)
     int maxArea(vector<int>& height);                                       //11.盛最多水的容器
     string longestCommonPrefix(vector<string>& strs);                       //14. 最长公共前缀
+    ListNode* mergeKLists(vector<ListNode*>& lists);                        //23. 合并K个升序链表
 };
 #endif

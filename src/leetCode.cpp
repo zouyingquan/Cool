@@ -313,3 +313,33 @@ int Solution::myAtoi(string s)
 
     return ans;
 }
+
+ListNode* Solution::mergeKLists(vector<ListNode*>& lists) 
+{
+    ListNode *ans = nullptr;
+
+    auto cmp = [&](ListNode *a , ListNode *b){ return a->val > b->val;};
+
+    std::priority_queue<ListNode* , std::vector<ListNode*> , decltype(cmp)> q(cmp);
+
+    for(auto &node : lists)
+    {
+        if(node)
+            q.push(node);
+    }
+
+    ListNode *head = new ListNode();
+    ListNode *tail = head;
+
+    while(!q.empty())
+    {
+        ListNode *node = q.top();
+        q.pop();
+        tail->next = node;
+        tail = tail->next;
+        if(node->next) 
+            q.push(node->next);
+    }
+
+    return head->next;
+}
