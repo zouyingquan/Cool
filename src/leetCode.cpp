@@ -343,3 +343,70 @@ ListNode* Solution::mergeKLists(vector<ListNode*>& lists)
 
     return head->next;
 }
+
+vector<int> Solution::spiralOrder(vector<vector<int>>& matrix) 
+{
+    int startX = 0;
+    int startY = 0;
+    int endX = matrix[0].size();
+    int endY = matrix.size();
+    const int turnLeft = 1;
+    const int turnDown = 2;
+    const int turnRight = 3;
+    const int turnUp = 4;
+    int i = 0;
+    int status = turnRight;
+    
+    vector<int> ans;
+    while(endX != startX && endY != startY)
+    {
+        switch (status)
+        {
+            case turnRight:
+                {
+                    for(i = startX; i < endX; ++i)
+                    {
+                        ans.push_back(matrix[startY][i]);
+                    }
+                    ++startY;
+                    status = turnDown;
+                    break;
+                }
+            case turnDown:
+                {
+                    for(i = startY; i < endY; ++i)
+                    {
+                        ans.push_back(matrix[i][endX - 1]);
+                    }
+                    --endX;
+                    status = turnLeft;
+                    break;
+                }
+            case turnLeft:
+                {
+                    for(i = endX - 1; i >= startX; --i)
+                    {
+                        ans.push_back(matrix[endY - 1][i]);
+                    }
+                    --endY;
+                    status = turnUp;
+                    break;
+                }
+            case turnUp:
+                {
+                    for(i = endY - 1; i >= startY; --i)
+                    {
+                        ans.push_back(matrix[i][startX]);
+                    }
+                    ++startX;
+                    status = turnRight;
+                    break;
+                }
+
+            default:
+                break;
+        }
+    }
+
+    return ans;
+}
