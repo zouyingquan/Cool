@@ -26,6 +26,8 @@ public:
     int maxArea(vector<int>& height);                                       //11.盛最多水的容器
     string longestCommonPrefix(vector<string>& strs);                       //14. 最长公共前缀
     ListNode* mergeKLists(vector<ListNode*>& lists);                        //23. 合并K个升序链表
-    vector<int> spiralOrder(vector<vector<int>>& matrix);         //54. 螺旋矩阵
+    vector<int> spiralOrder(vector<vector<int>>& matrix);                   //54. 螺旋矩阵
+    vector<vector<int>> generateMatrix(int n);                              //59. 螺旋矩阵 II
+
 };
 #endif

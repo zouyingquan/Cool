@@ -410,3 +410,89 @@ vector<int> Solution::spiralOrder(vector<vector<int>>& matrix)
 
     return ans;
 }
+
+vector<vector<int>> Solution::generateMatrix(int n) 
+{
+    int startX = 0;
+    int startY = 0;
+    int endX = n;
+    int endY = n;
+
+    const int turnLeft = 1;
+    const int turnDown = 2;
+    const int turnRight = 3;
+    const int turnUp = 4;
+    int i = 0;
+    int index = 1;
+    int status = turnRight;
+
+    vector<vector<int>> matrix;
+    int j = 0;
+    while(j < n)
+    {
+        vector<int> tmp;
+        for(int i = 1; i < n; ++i)
+        {
+            tmp.push_back(i);
+        }
+        ++j;
+        matrix.push_back(tmp);
+    }
+
+
+    while(endX != startX && endY != startY)
+    {
+        switch (status)
+        {
+            case turnRight:
+                {
+                    for(i = startX; i < endX; ++i)
+                    {
+                        matrix[startY][i] = index;
+                        ++index;
+                    }
+                    ++startY;
+                    status = turnDown;
+                    break;
+                }
+            case turnDown:
+                {
+                    for(i = startY; i < endY; ++i)
+                    {
+                        matrix[i][endX - 1] = index;
+                        ++index;
+                    }
+                    --endX;
+                    status = turnLeft;
+                    break;
+                }
+            case turnLeft:
+                {
+                    for(i = endX - 1; i >= startX; --i)
+                    {
+                        matrix[endY - 1][i] = index;
+                        ++index;
+                    }
+                    --endY;
+                    status = turnUp;
+                    break;
+                }
+            case turnUp:
+                {
+                    for(i = endY - 1; i >= startY; --i)
+                    {
+                        matrix[i][startX] = index;
+                        ++index;
+                    }
+                    ++startX;
+                    status = turnRight;
+                    break;
+                }
+
+            default:
+                break;
+        }
+    }
+
+    return matrix;
+}
