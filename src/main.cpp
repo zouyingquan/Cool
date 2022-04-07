@@ -32,9 +32,26 @@ int main(int argc, char* argv[])
     #endif
     Solution leetcode;
     LOG(INFO) << "cool start ..";
-    LOG(INFO) << leetcode.reverse(1090000);
+    ListNode *a = new ListNode(0);
+    
+    ListNode *b = new ListNode(1);
+    ListNode *c = new ListNode(2);
 
-     
+    a->next = b;
+    b->next = c;
+
+    ListNode *index = a;
+    while(index)
+    {
+        LOG(INFO) << index->val;
+        index = index->next;
+    }
+
+
+    ListNode *ans = leetcode.rotateRight(a,1);
+
+    leetcode.PrintList(ans);
+
     #if USE_GLOG
     google::ShutdownGoogleLogging();
     #endif

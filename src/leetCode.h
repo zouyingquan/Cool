@@ -15,6 +15,7 @@ class Solution
 public:
     Solution(){}
     ~Solution(){}
+    void PrintList(ListNode *head);
     vector<int> twoSum(vector<int> &nums, int target);                      //1.两数之和
     ListNode *addTwoNumbers(ListNode *l1, ListNode *l2);                    //2.两数相加
     int lengthOfLongestSubstring(string s);
@@ -28,6 +29,8 @@ public:
     ListNode* mergeKLists(vector<ListNode*>& lists);                        //23. 合并K个升序链表
     vector<int> spiralOrder(vector<vector<int>>& matrix);                   //54. 螺旋矩阵
     vector<vector<int>> generateMatrix(int n);                              //59. 螺旋矩阵 II
-
+    ListNode* rotateRight(ListNode* head, int k);                           //61. 旋转链表
+    int uniquePaths(int m, int n);                                          //62. 不同路径
+    int climbStairs(int n);                                                 //70. 爬楼梯
 };
 #endif

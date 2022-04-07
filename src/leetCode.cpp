@@ -496,3 +496,88 @@ vector<vector<int>> Solution::generateMatrix(int n)
 
     return matrix;
 }
+
+ListNode* Solution::rotateRight(ListNode* head, int k) 
+{
+    if(head == nullptr)
+        return nullptr;
+
+    if(head->next == nullptr || k == 0)
+        return head;
+    
+    ListNode *tail = head;
+    ListNode *ans;
+    int len = 1;
+    int rotateTimes = 0;
+    while(tail->next != nullptr)
+    {
+        tail = tail->next;
+        ++len;
+    }
+    rotateTimes = k % len;
+    if(rotateTimes == 0)
+        return head;
+    
+    tail->next = head;
+    int step = len - rotateTimes;
+    while(step > 0)
+    {
+        --step;
+        tail = tail->next;
+        head = head->next;
+    }
+    tail->next = nullptr;
+
+    return head;
+}
+
+
+void Solution::PrintList(ListNode *head)
+{
+    ListNode *index = head;
+    LOG(INFO) << "PrintList == ";
+    while(index)
+    {
+        LOG(INFO) << index->val;
+        index = index->next;
+    }
+    
+    LOG(INFO) << "PrintList == ";
+}
+
+int Solution::uniquePaths(int m, int n) 
+{
+    std::vector<std::vector<int>> dp(m,vector<int>(n));
+
+        for(int i = 0 ; i < m ; ++i)
+        {
+            dp[i][0] = 1;
+        }
+
+        for(int j = 0 ; j < n; ++j)
+        {
+            dp[0][j] = 1;
+        }
+
+        for(int i = 1; i < m ; ++i)
+        {
+            for(int j = 1; j < n; ++j)
+            {
+                dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+            }
+        }
+
+        return dp[m - 1][n - 1];
+}
+
+int Solution::climbStairs(int n) 
+{
+    int p = 0, q = 0, r = 1;
+    for(int i = 0 ;i < n ;++i)
+    {
+        p = q;
+        q = r;
+        r = p + q;
+    }
+    return r;
+}
