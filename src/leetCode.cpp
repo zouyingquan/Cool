@@ -581,3 +581,43 @@ int Solution::climbStairs(int n)
     }
     return r;
 }
+
+void Solution::subsetsbackTrack(vector<int> &nums, vector<int> &path, int start)
+{
+    subsetsRes.push_back(path);
+    for(int i = start ; i < nums.size(); ++i)
+    {
+        path.push_back(nums[i]);
+        subsetsbackTrack(nums,path,i + 1);
+        path.pop_back();
+    }
+}
+
+vector<vector<int>> Solution::subsets(vector<int>& nums) 
+{
+    vector<int> path;
+    subsetsbackTrack(nums,path,0);
+    return subsetsRes;
+}
+
+
+void Solution::subsetsWithDupbackTrack(vector<int> &nums, vector<int> &path, int start)
+{
+    subsetsWithDupRes.push_back(path);
+    for(int i = start ; i < nums.size(); ++i)
+    {
+        if(i > start && nums[i] == nums[i - 1])
+            continue;
+        path.push_back(nums[i]);
+        subsetsWithDupbackTrack(nums,path,i + 1);
+        path.pop_back();
+    }
+}
+
+vector<vector<int>> Solution::subsetsWithDup(vector<int>& nums) 
+{
+    std::sort(nums.begin(),nums.end());
+    vector<int> path;
+    subsetsWithDupbackTrack(nums,path,0);
+    return subsetsWithDupRes;
+}

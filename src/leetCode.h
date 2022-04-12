@@ -28,9 +28,17 @@ public:
     string longestCommonPrefix(vector<string>& strs);                       //14. 最长公共前缀
     ListNode* mergeKLists(vector<ListNode*>& lists);                        //23. 合并K个升序链表
     vector<int> spiralOrder(vector<vector<int>>& matrix);                   //54. 螺旋矩阵
-    vector<vector<int>> generateMatrix(int n);                              //59. 螺旋矩阵 II
+    vector<vector<int>> generateMatrix(int n);                              //59. 螺旋矩阵II
     ListNode* rotateRight(ListNode* head, int k);                           //61. 旋转链表
     int uniquePaths(int m, int n);                                          //62. 不同路径
     int climbStairs(int n);                                                 //70. 爬楼梯
+    vector<vector<int>> subsets(vector<int>& nums);                         //78. 子集
+    vector<vector<int>> subsetsWithDup(vector<int>& nums);                   //90. 子集II
+public:
+    vector<vector<int>> subsetsRes;
+    void subsetsbackTrack(vector<int> &nums, vector<int> &path, int start);
+
+    vector<vector<int>> subsetsWithDupRes;
+    void subsetsWithDupbackTrack(vector<int> &nums, vector<int> &path, int start);
 };
 #endif
