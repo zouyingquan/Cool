@@ -30,28 +30,31 @@ int main(int argc, char* argv[])
     google::InstallFailureSignalHandler();
     google::InstallFailureWriter(&signal_handle);  
     #endif
-    Solution leetcode;
-    LOG(INFO) << "cool start ..";
-    ListNode *a = new ListNode(0);
+    // Solution leetcode;
+    // LOG(INFO) << "cool start ..";
+    // ListNode *a = new ListNode(0);
     
-    ListNode *b = new ListNode(1);
-    ListNode *c = new ListNode(2);
+    // ListNode *b = new ListNode(1);
+    // ListNode *c = new ListNode(2);
 
-    a->next = b;
-    b->next = c;
+    // a->next = b;
+    // b->next = c;
 
-    ListNode *index = a;
-    while(index)
-    {
-        LOG(INFO) << index->val;
-        index = index->next;
-    }
+    // ListNode *index = a;
+    // while(index)
+    // {
+    //     LOG(INFO) << index->val;
+    //     index = index->next;
+    // }
 
 
-    ListNode *ans = leetcode.rotateRight(a,1);
+    // ListNode *ans = leetcode.rotateRight(a,1);
 
-    leetcode.PrintList(ans);
+    // leetcode.PrintList(ans);
+    std::map<int,string> m_map;
 
+    string a = m_map[1];
+    std::cout << m_map.size();
     #if USE_GLOG
     google::ShutdownGoogleLogging();
     #endif

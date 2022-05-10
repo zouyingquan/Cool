@@ -621,3 +621,75 @@ vector<vector<int>> Solution::subsetsWithDup(vector<int>& nums)
     subsetsWithDupbackTrack(nums,path,0);
     return subsetsWithDupRes;
 }
+
+void Solution::merge(vector<int>& nums1, int m, vector<int>& nums2, int n)
+{
+    int i = m - 1;
+    int j = n - 1 ;
+    int lensM = nums1.size();
+    int lensN = nums2.size();
+    int index = m + n - 1;
+
+    while(index >= 0)
+    {
+        if(i >= 0 && j >= 0)
+        {
+            if(nums1[i] >= nums2[j])
+            {
+                nums1[index] = nums1[i];
+                nums1[i] = 0;
+                --i;
+            }
+            else
+            {
+                nums1[index] = nums2[j];
+                nums2[j] = 0;
+                --j;
+            }
+        }
+        else if(j < 0)
+        {
+            break;
+        }
+        else
+        {
+            nums1[index] = nums2[j];
+            --j;
+        }
+
+        --index;
+    }
+}
+
+int Solution::maxDepth(TreeNode* root) 
+{
+    if(root == nullptr)
+    {
+        return 0;
+    }
+    int leftSize = 0;
+    int rightSize = 0;
+
+    if(root)
+    {
+        
+        leftSize = 1 + maxDepth(root->left);
+        rightSize = 1 + maxDepth(root->right);
+    }
+
+    return (leftSize > rightSize) ? leftSize : rightSize;
+}
+
+int Solution::maxProfit(vector<int>& prices)
+{
+    int minPoint = INT16_MAX;
+    int maxprofit = 0;
+
+    for(auto price : prices)
+    {
+        maxprofit = std::max(maxprofit,price - minPoint);
+        minPoint = std::min(price,minPoint);
+    }
+
+    return maxprofit;
+}
